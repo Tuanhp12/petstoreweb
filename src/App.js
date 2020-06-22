@@ -8,6 +8,8 @@ import Header from './components/layout/Header'
 import ProductDetail from './components/productBoard/ProductDetail'
 import Navbar from './components/layout/Navbar';
 import Cart from './components/orderDetails/Cart'
+import FormCustomer from './components/customer/FormCustomer';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Dashboard}/>
             <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/formCustomer" component={FormCustomer} />
             <Route exact path="/productDetail/:idCategory/:idProduct" component={ProductDetail}/>
           </Switch>
         </div>

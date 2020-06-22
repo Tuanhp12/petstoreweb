@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import {connect} from 'react-redux'
 import { productQuantity, clearProduct } from '../../actions/productQuantity'
+import {Link} from 'react-router-dom'
 
 
 function Cart({basketProps, productQuantity, clearProduct}) { // {basketProps} == props.basketProps
@@ -57,6 +58,9 @@ function Cart({basketProps, productQuantity, clearProduct}) { // {basketProps} =
             
                 <h4>{basketProps.cartCost},00</h4>
             </div>
+            <Link to="/formCustomer">
+                <button >Payment</button>
+            </Link>
         </div>
     )
 }
