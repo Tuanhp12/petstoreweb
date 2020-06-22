@@ -41,6 +41,10 @@ class ProductDetail extends Component {
                 <h1>Product Name: {product.name}</h1>
                 <p>Price: {product.price}</p>
                 <p>description: {product.description}</p>
+                <input type="text"/>
+                <button >
+                    Add To Cart
+                </button>
             </div>
         )
     }

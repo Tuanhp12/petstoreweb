@@ -17,7 +17,7 @@ class CategoryItem extends Component {
                 <hr/>
                 <h3>Product List</h3>
                 {category.products.map(product => (
-                    <ListProduct key={product.id} product={product}/>
+                    <ListProduct key={product.id} productGet={product}/>
                 ))}
             </div>
         )
