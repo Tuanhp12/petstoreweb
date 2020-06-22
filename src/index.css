@@ -1,1 +1,28 @@
+.mb-4{
+    background-color: rgb(78, 211, 255);
+}
+header{
+    height: 100px;
+    background-color: whitesmoke;
+}
+li {
+    list-style-type: none;
+    margin: 5px;
+}
+#mobile-nav ul li{
+    display: inline-block;
+}
+.account-action{
+    float: right;
+}
 
+.cart-icon{
+    float: right;
+    margin: 10px;
+    border-radius: 50%;
+    border: none;
+}
+
+a:hover{
+    color: purple
+}
