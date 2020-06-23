@@ -3,9 +3,9 @@ import {GET_ERRORS, GET_CUSTOMER, GET_CUSTOMERS} from "./types"
 
 export const createCustomer = (customer, history) => async dispatch => {
     try{
-        const res = await axios.post("http://localhost:8080/api/customer/v1", customer)
-        history.push("/success")
-        history.go()       
+        await axios.post("http://localhost:8080/api/customer/v1", customer)
+        // history.push("/success")
+        // history.go()       
     } catch(err){
         dispatch({
             type: GET_ERRORS,
