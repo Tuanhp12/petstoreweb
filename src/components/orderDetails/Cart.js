@@ -9,7 +9,7 @@ function Cart({basketProps, productQuantity, clearProduct}) { // {basketProps} =
 
     let products = [];
 
-    // console.log(basketProps.productsInCart)
+    // console.log(basketProps)
 
     Object.keys(basketProps.productsInCart).forEach(function(item){
         // console.log(item)
@@ -58,9 +58,13 @@ function Cart({basketProps, productQuantity, clearProduct}) { // {basketProps} =
             
                 <h4>{basketProps.cartCost},00</h4>
             </div>
-            <Link to="/formCustomer">
-                <button >Payment</button>
-            </Link>
+            <Link to={{ 
+                pathname: `/formCustomer`, 
+                accessToDB: {
+                  cartCost: basketProps.cartCost,
+                  productsInCart: basketProps.productsInCart
+                } 
+              }}>Payment</Link>
         </div>
     )
 }
