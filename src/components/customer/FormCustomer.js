@@ -51,12 +51,12 @@ class FormCustomer extends Component {
       address: this.state.address,
       city: this.state.city,
     };
-    // console.log(newCustomer);
+    console.log(newCustomer);
     this.props.createCustomer(newCustomer, this.props.history);
 
     //find with highest time create
     const takeOrderDetail = this.props.orderDetailProps.orderDetail;
-    // console.log(takeOrderDetail)
+    console.log(takeOrderDetail)
 
     const listProductsItem = this.props.history.location.accessToDB;
     // console.log(this.state.listProductsItem)
@@ -183,14 +183,12 @@ class FormCustomer extends Component {
                     <div className="invalid-feedback">{errors.city}</div>
                   )}
                 </div>
-                <Link to="/success">
                   <button
                     type="submit"
                     className="btn btn-primary btn-block mt-4"
                   >
                     Create
                   </button>
-                </Link>
               </form>
               <br />
               <br />
