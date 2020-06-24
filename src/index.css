@@ -41,7 +41,6 @@ li {
   display: block;
   margin-left: 25%;
   margin-right: 25%;
-  background-color: whitesmoke;
   border-radius: 20px 20px;
 }
 
@@ -88,4 +87,7 @@ b {
 .add-cart{
   border: 1px solid blue;
   border-radius: 50%;
+}
+.payment-btn {
+  float: right;
 }

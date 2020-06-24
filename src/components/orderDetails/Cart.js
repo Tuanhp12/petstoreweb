@@ -26,10 +26,15 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
     // console.log(product)
     return (
       <tr className="product container col-md-12">
+        <td><img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-kMBgPCHdsaIoSN4QdX2YCN8uBHOWlOtBNK6FC2myhE9vAjs1&usqp=CAU"
+        className="img-fluid"
+        alt={product.nameProduct} width="70px" height="70px"
+      /></td>
         <td className="sm-hide">{product.product.name}</td>
         <td className="price sm-hide">${product.product.price}</td>
         <td className="quantity">
-          <button className="btn btn-success qty-btn" onClick={() => productQuantity("decrease", product.product)}>
+          <button className="btn btn-primary qty-btn" onClick={() => productQuantity("decrease", product.product)}>
             <svg
               className="bi bi-dash"
               width="1em"
@@ -94,7 +99,8 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
       <table className="table table-bordered col-md-12">
         <thead>
           <tr>
-            <th>PRODUCT</th>
+            <th>IMAGE</th>
+            <th>NAME</th>
             <th>PRICE</th>
             <th>QUANTITY</th>
             <th></th>
@@ -103,13 +109,19 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
         <tbody>{products}</tbody>
       </table>
       <div className="container">
-        <div>
+        <div className="payment-btn">
           <h4>Basket Total</h4>
           <h4>{basketProps.cartCost}$</h4>
+        
+        <Link to={{ 
+          pathname: `/formCustomer`, 
+          accessToDB: {
+            basketNumbers: basketProps.basketNumbers,
+            cartCost: basketProps.cartCost,
+            productsInCart: basketProps.productsInCart
+          } 
+        }}><button className="btn btn-secondary">Payment</button></Link>
         </div>
-        <Link to="/formCustomer">
-          <button className="btn btn-secondary">Payment</button>
-        </Link>
       </div>
     </div>
   );

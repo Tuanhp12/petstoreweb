@@ -4,11 +4,13 @@ import productReducer from "./productReducer";
 import categoryReducer from './categoryReducer'
 import basketReducer from './basketReducer'
 import customerReducer from "./customerReducer";
+import orderDetailReducer from "./orderDetailReducer";
 
 export default combineReducers({
   errors: errorReducer,
   product: productReducer,
   category: categoryReducer,
   basketState : basketReducer,
-  customerState: customerReducer
+  customerState: customerReducer,
+  orderDetailState: orderDetailReducer
 }); 

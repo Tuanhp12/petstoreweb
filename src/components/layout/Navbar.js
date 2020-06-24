@@ -56,8 +56,8 @@ function Navbar(props) {
               <button className="btn btn-default cart-icon">
                 <svg
                   className="bi bi-cart-check"
-                  width="2em"
-                  height="2em"
+                  width="1.5em"
+                  height="1.5em"
                   viewBox="0 0 16 16"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"

@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createCustomer, getCustomers } from "../../actions/customerAction";
+import { getOrderDetail } from "../../actions/orderDetailAction";
+import { createOrderItems } from "../../actions/orderDetailAction";
 import classnames from "classnames";
+import {Link} from "react-router-dom"
 
 class FormCustomer extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
+    // console.log(this.props.history.location.accessToDB)
+    // console.log();
     this.state = {
       nameCustomer: "",
       email: "",
@@ -16,9 +20,14 @@ class FormCustomer extends Component {
       gender: "",
       city: "",
       errors: {},
+      // listProductsItem: this.props.history.location.accessToDB
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getOrderDetail();
   }
 
   //life cycle hooks
@@ -34,6 +43,9 @@ class FormCustomer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const listProductsItem = this.props.history.location.accessToDB;
+    if(listProductsItem.basketNumbers !== 0){
+ 
     const newCustomer = {
       nameCustomer: this.state.nameCustomer,
       email: this.state.email,
@@ -44,6 +56,42 @@ class FormCustomer extends Component {
     };
     console.log(newCustomer);
     this.props.createCustomer(newCustomer, this.props.history);
+
+    //find with highest time create
+    const takeOrderDetail = this.props.orderDetailProps.orderDetail;
+    // console.log(takeOrderDetail)
+
+    
+    // console.log(this.state.listProductsItem)
+    console.log(listProductsItem)
+
+    takeOrderDetail.totalPrice = listProductsItem.cartCost;
+    // console.log(takeOrderDetail)
+
+    //Do this
+    //add to ListItem
+    // console.log(listProductsItem.productsInCart)
+    // console.log(listProductsItem.productsInCart[0])
+    Object.keys(listProductsItem.productsInCart).map((orderItem, index) => {
+      //return new page to be bill  -> if have time
+      if (listProductsItem.productsInCart[orderItem].inCart === true) {
+        const newProductItems = {
+          amount: listProductsItem.productsInCart[orderItem].numbers,
+          priceEach: listProductsItem.productsInCart[orderItem].product.price,
+        };
+        console.log(newProductItems);
+        this.props.createOrderItems(
+          takeOrderDetail.orderDetailIdentifier,
+          listProductsItem.productsInCart[orderItem].product.productIdentifier,
+          newProductItems
+        );
+      }
+    });
+  }
+  else{
+    alert("These no product")
+  }
+    // update orderDetail with orderLists = ListItem
   }
 
   render() {
@@ -53,7 +101,6 @@ class FormCustomer extends Component {
         <div className="container">
           <div className="col-md-6 m-auto order-info">
             <h3 className="text-center form-title">Order Information</h3>
-            <hr />
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <input
@@ -158,8 +205,13 @@ FormCustomer.propTypes = {
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  orderDetailProps: state.orderDetailState,
 });
 
-export default connect(mapStateToProps, { createCustomer, getCustomers })(
-  FormCustomer
-);
+export default connect(mapStateToProps, {
+  createCustomer,
+  getCustomers,
+  getOrderDetail,
+  createOrderItems,
+  // updateOrderDetail
+})(FormCustomer);
