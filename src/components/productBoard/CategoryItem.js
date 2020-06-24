@@ -12,10 +12,7 @@ class CategoryItem extends Component {
         // console.log(category.products)
         return (
             <div>
-                <h2>{category.categoryIdentifier}</h2>
-                <p>{category.type}</p>          
-                <hr/>
-                <h3>Product List</h3>
+
                 {category.products.map(product => (
                     <ListProduct key={product.id} productGet={product}/>
                 ))}

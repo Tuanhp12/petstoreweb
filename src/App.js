@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import ProductDetail from './components/productBoard/ProductDetail'
 import Cart from './components/orderDetails/Cart'
 import Header from './components/layout/Header';
+import FormCustomer from './components/customer/FormCustomer';
 function App() {
   return (
     <Provider store={store}>
@@ -16,6 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Dashboard}/>
             <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/formCustomer" component={FormCustomer} />
             <Route exact path="/productDetail/:idCategory/:idProduct" component={ProductDetail}/>
           </Switch>
         </div>

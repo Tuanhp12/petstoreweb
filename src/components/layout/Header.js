@@ -7,26 +7,14 @@ class Header extends Component {
     return (
       <div>
         <header>
-            <div className="container">
+          <div className="container">
+            <div>
               <Link to="/">
-                <h3>Pet Shop</h3>
+                <h3 className="logo">Pet Shop</h3>
               </Link>
-              <div id="mobile-nav">
-                <ul className="account-action">
-                  <li>
-                    <a href="register.html">
-                      Sign Up
-                    </a>
-                  </li>
-                  <li>
-                    <a href="login.html">
-                      Login
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
-
+              
+          </div>
         </header>
         <Navbar />
       </div>

@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
         return (
             <div>
-                <h1>Dash board</h1>
+                <p>Dash board</p>
                 {categories.map(category => (
                     <CategoryItem key={category.id} category={category}/>
                 ))}

@@ -1,64 +1,89 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {getProduct} from '../../actions/productActions'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getProduct } from "../../actions/productActions";
+import PropTypes from "prop-types";
 
 class ProductDetail extends Component {
-    constructor(){
-        super()
+  constructor() {
+    super();
 
-        this.state = {
-            name: "",
-            price: "",
-            description: ""
-        }
-    }
+    this.state = {
+      name: "",
+      price: "",
+      description: "",
+    };
+  }
 
-    componentDidMount(){
-        console.log(this.props.match.params)
-        const {idCategory, idProduct} = this.props.match.params
-        console.log(idCategory)
-        console.log(idProduct)
-        this.props.getProduct(idCategory,idProduct, this.props.history);
-    }
+  componentDidMount() {
+    console.log(this.props.match.params);
+    const { idCategory, idProduct } = this.props.match.params;
+    console.log(idCategory);
+    console.log(idProduct);
+    this.props.getProduct(idCategory, idProduct, this.props.history);
+  }
 
-    
-    // componentWillReceiveProps(nextProps){
-    //     if(nextProps.errors){
-    //         this.setState({errors: nextProps.errors})
-    //     }
-    //     console.log(nextProps)
-    //     const {name,price,description} = nextProps.product;
-    //     this.setState({name,price,description})
-    // }
+  // componentWillReceiveProps(nextProps){
+  //     if(nextProps.errors){
+  //         this.setState({errors: nextProps.errors})
+  //     }
+  //     console.log(nextProps)
+  //     const {name,price,description} = nextProps.product;
+  //     this.setState({name,price,description})
+  // }
 
-    render() {
-
-        const {product} = this.props // <=> const product = this.props.product
-        console.log(product)
-        return (
-            <div>
-                <h1>Product Name: {product.name}</h1>
-                <p>Price: {product.price}</p>
-                <p>description: {product.description}</p>
-                <input type="text"/>
-                <button >
-                    Add To Cart
-                </button>
-            </div>
-        )
-    }
+  render() {
+    const { product } = this.props; // <=> const product = this.props.product
+    console.log(product);
+    return (
+      <div className="container">
+        <h1 className="cart-title">PRODUCT DETAILS</h1>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-kMBgPCHdsaIoSN4QdX2YCN8uBHOWlOtBNK6FC2myhE9vAjs1&usqp=CAU"
+          className="img-fluid"
+          alt={product.nameProduct}
+        />
+        <h3>Name: {product.name}</h3>
+        <p>Price: {product.price}</p>
+        <p>description: {product.description}</p>
+        <button
+          className="btn btn-primary add-cart"
+          type="button"
+        >
+          <svg
+            class="bi bi-cart-plus"
+            width="2em"
+            height="2em"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+            />
+          </svg>
+        </button>
+      </div>
+    );
+  }
 }
 
 ProductDetail.propTypes = {
-    getProduct: PropTypes.func.isRequired,
-    // errors: PropTypes.object.isRequired,
-    product: PropTypes.object.isRequired
-}
+  getProduct: PropTypes.func.isRequired,
+  // errors: PropTypes.object.isRequired,
+  product: PropTypes.object.isRequired,
+};
 
-const mapStateToProps = state => ({
-    product: state.product.product,
-})
+const mapStateToProps = (state) => ({
+  product: state.product.product,
+});
 
-
-export default connect(mapStateToProps, {getProduct})(ProductDetail)
+export default connect(mapStateToProps, { getProduct })(ProductDetail);
