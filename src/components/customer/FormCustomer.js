@@ -5,7 +5,7 @@ import { createCustomer, getCustomers } from "../../actions/customerAction";
 import { getOrderDetail } from "../../actions/orderDetailAction";
 import { createOrderItems } from "../../actions/orderDetailAction";
 import classnames from "classnames";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 class FormCustomer extends Component {
   constructor(props) {
@@ -44,53 +44,51 @@ class FormCustomer extends Component {
   onSubmit(e) {
     e.preventDefault();
     const listProductsItem = this.props.history.location.accessToDB;
-    if(listProductsItem.basketNumbers !== 0){
- 
-    const newCustomer = {
-      nameCustomer: this.state.nameCustomer,
-      email: this.state.email,
-      gender: this.state.gender,
-      phone: this.state.phone,
-      address: this.state.address,
-      city: this.state.city,
-    };
-    console.log(newCustomer);
-    this.props.createCustomer(newCustomer, this.props.history);
+    if (listProductsItem.basketNumbers !== 0) {
+      const newCustomer = {
+        nameCustomer: this.state.nameCustomer,
+        email: this.state.email,
+        gender: this.state.gender,
+        phone: this.state.phone,
+        address: this.state.address,
+        city: this.state.city,
+      };
+      console.log(newCustomer);
+      this.props.createCustomer(newCustomer, this.props.history);
 
-    //find with highest time create
-    const takeOrderDetail = this.props.orderDetailProps.orderDetail;
-    // console.log(takeOrderDetail)
+      //find with highest time create
+      const takeOrderDetail = this.props.orderDetailProps.orderDetail;
+      // console.log(takeOrderDetail)
 
-    
-    // console.log(this.state.listProductsItem)
-    console.log(listProductsItem)
+      // console.log(this.state.listProductsItem)
+      // console.log(listProductsItem);
 
-    takeOrderDetail.totalPrice = listProductsItem.cartCost;
-    // console.log(takeOrderDetail)
+      takeOrderDetail.totalPrice = listProductsItem.cartCost;
+      // console.log(takeOrderDetail)
 
-    //Do this
-    //add to ListItem
-    // console.log(listProductsItem.productsInCart)
-    // console.log(listProductsItem.productsInCart[0])
-    Object.keys(listProductsItem.productsInCart).map((orderItem, index) => {
-      //return new page to be bill  -> if have time
-      if (listProductsItem.productsInCart[orderItem].inCart === true) {
-        const newProductItems = {
-          amount: listProductsItem.productsInCart[orderItem].numbers,
-          priceEach: listProductsItem.productsInCart[orderItem].product.price,
-        };
-        console.log(newProductItems);
-        this.props.createOrderItems(
-          takeOrderDetail.orderDetailIdentifier,
-          listProductsItem.productsInCart[orderItem].product.productIdentifier,
-          newProductItems
-        );
-      }
-    });
-  }
-  else{
-    alert("These no product")
-  }
+      //Do this
+      //add to ListItem
+      // console.log(listProductsItem.productsInCart)
+      // console.log(listProductsItem.productsInCart[0])
+      Object.keys(listProductsItem.productsInCart).map((orderItem, index) => {
+        //return new page to be bill  -> if have time
+        if (listProductsItem.productsInCart[orderItem].inCart === true) {
+          const newProductItems = {
+            amount: listProductsItem.productsInCart[orderItem].numbers,
+            priceEach: listProductsItem.productsInCart[orderItem].product.price,
+          };
+          console.log(newProductItems);
+          this.props.createOrderItems(
+            takeOrderDetail.orderDetailIdentifier,
+            listProductsItem.productsInCart[orderItem].product
+              .productIdentifier,
+            newProductItems
+          );
+        }
+      });
+    } else {
+      alert("These no product");
+    }
     // update orderDetail with orderLists = ListItem
   }
 
@@ -148,9 +146,13 @@ class FormCustomer extends Component {
                 )}
               </div>
               <div class="form-group">
-                <select id="inputState" class="form-control" name="gender"
-                value={this.state.gender}
-                onChange={this.onChange}>
+                <select
+                  id="inputState"
+                  class="form-control"
+                  name="gender"
+                  value={this.state.gender}
+                  onChange={this.onChange}
+                >
                   <option selected>Gender</option>
                   <option>Male</option>
                   <option>Female</option>
@@ -185,7 +187,10 @@ class FormCustomer extends Component {
                   <div className="invalid-feedback">{errors.city}</div>
                 )}
               </div>
-              <button type="submit" className="btn btn-primary btn-block mt-4 form-group">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block mt-4 form-group"
+              >
                 Order
               </button>
             </form>
