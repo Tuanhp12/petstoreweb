@@ -1,1 +1,93 @@
+.mb-4 {
+  background-color: rgb(78, 211, 255);
+}
+.logo {
+  padding-top: 25px;
+  padding-bottom: 25px;
 
+  color: white;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+}
+header {
+  height: 100px;
+  background-image: url("./images/nzd-theme-background-header.jpg");
+}
+li {
+  list-style-type: none;
+  margin: 5px;
+}
+
+
+.cart-icon {
+  float: right;
+  margin: 10px;
+  border-radius: 50%;
+  border: 2px solid red;
+  background-color: white;
+}
+
+#fixNav{
+  width: 100%;
+  display: block;
+  position: fixed; /*Cho menu cố định 1 vị trí với top và left*/
+  top: 0; /*Nằm trên cùng*/
+  left: 0; /*Nằm sát bên trái*/
+  z-index: 100000; /*Hiển thị lớp trên cùng*/
+}
+
+.order-info {
+  align-items: center;
+  display: block;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 20px 20px;
+}
+
+.order-btn {
+  align-items: center;
+  display: block;
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: rgb(78, 211, 255);
+  border-radius: 20px 20px;
+}
+
+/* navbar item */
+.nav-item li {
+  display: inline-block;
+}
+b {
+  font-size: 18px;
+  color: blue;
+}
+
+.form-title {
+  padding: 15px;
+  color: blue;
+}
+#item-product{
+  float: right;
+  margin: 25px 45px 0px 20px;
+}
+.th-item{
+  float: left;
+  width :100px;
+}
+.checkout-cart{
+  float: right;
+}
+.qty-btn{
+  margin: 0px 10px 0px 10px ;
+}
+.cart-title{
+  text-align: center;
+  margin: 20px;
+}
+.add-cart{
+  border: 1px solid blue;
+  border-radius: 50%;
+}
+.payment-btn {
+  float: right;
+}

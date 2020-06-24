@@ -1,33 +1,23 @@
 import React, { Component } from "react";
+import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
     return (
-      <header>
-        <div className="overlay">
-        <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+      <div>
+        <header>
           <div className="container">
-            <a className="navbar-brand" href="Dashboard.html">
-              Pet Shop
-            </a>
-            <div className="collapse navbar-collapse" id="mobile-nav">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <a className="nav-link " href="register.html">
-                    Sign Up
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="login.html">
-                    Login
-                  </a>
-                </li>
-              </ul>
+            <div>
+              <Link to="/">
+                <h3 className="logo">Pet Shop</h3>
+              </Link>
             </div>
+              
           </div>
-        </nav>
-        </div>
-      </header>
+        </header>
+        <Navbar />
+      </div>
     );
   }
 }
