@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { productQuantity, clearProduct } from "../../actions/productQuantity";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
     // console.log("my product: ")
     // console.log(product)
     return (
-      <tr className="product container col-md-12">
+      <tr key={index} className="product container col-md-12">
         <td><img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-kMBgPCHdsaIoSN4QdX2YCN8uBHOWlOtBNK6FC2myhE9vAjs1&usqp=CAU"
         className="img-fluid"
@@ -73,7 +73,7 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
         <td>
           <button className="btn btn-danger" onClick={() => clearProduct(product.product)}>
             <svg
-              class="bi bi-trash-fill"
+            className="bi bi-trash-fill"
               width="1em"
               height="1em"
               viewBox="0 0 16 16"

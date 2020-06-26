@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_BASKET,GET_NUMBERS_BASKET } from './types'
+import { ADD_PRODUCT_BASKET,GET_NUMBERS_BASKET,GET_PRODUCTSCART } from './types'
 
 export const addBasket = (product) => {
     return (dispatch) => {
@@ -17,6 +17,15 @@ export const getNumbers = () => {
         console.log("Getting all Basket Numbers")
         dispatch({
             type: GET_NUMBERS_BASKET
+        })
+    }
+}
+
+export const takeCartInfo = () => {
+    return (dispatch) => {
+        // console.log("Getting all ")
+        dispatch({
+            type: GET_PRODUCTSCART
         })
     }
 }

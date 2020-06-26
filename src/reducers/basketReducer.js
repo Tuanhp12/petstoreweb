@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_BASKET, GET_NUMBERS_BASKET, INCREASE_QUANTITY, DECREASE_QUANTITY, CLEAR_PRODUCT } from "../actions/types";
+import { ADD_PRODUCT_BASKET, GET_NUMBERS_BASKET, INCREASE_QUANTITY, DECREASE_QUANTITY, CLEAR_PRODUCT , GET_PRODUCTSCART} from "../actions/types";
 
 const initialState = {
   basketNumbers: 0,
@@ -17,15 +17,15 @@ export default (state = initialState, action) => {
   switch (action.type) {
     
     case ADD_PRODUCT_BASKET:
-      while(state.productsInCart.length < 100){
+      while(state.productsInCart.length < 21){
         state.productsInCart.push(state.productInCart)
       }
       let index = action.payload.id - 1;
       productSelected = { ...state.productsInCart[index] };
       productSelected.product = action.payload; //action.payload == "product1 " <=> name product after click addBacket in Listproduct ()
-      productSelected.numbers += 1;
       if (productSelected.inCart === false) {
         state.basketNumbers += 1;
+        productSelected.numbers += 1;
       }
       productSelected.inCart = true;
       state.cartCost = state.cartCost + productSelected.product.price;
@@ -42,7 +42,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
       };
-
+    case GET_PRODUCTSCART:{
+      return {
+        ...state
+      }
+    }
     case INCREASE_QUANTITY:
       let index1 = action.payload1.id - 1;
       productSelected = {...state.productsInCart[index1]}
@@ -76,7 +80,7 @@ export default (state = initialState, action) => {
       
       // console.log(productSelected)
       // state.cartCost = state.cartCost + productSelected.product.price;
-      console.log(state.productsInCart)
+      // console.log(state.productsInCart)
       return {
         ...state,
         cartCost: newCartCost,

@@ -1,10 +1,16 @@
 import axios from 'axios'
-import {GET_ERRORS, GET_CUSTOMER, GET_CUSTOMERS} from "./types"
+import {GET_ERRORS, GET_CUSTOMER, GET_CUSTOMERS,DELETE_CUSTOMER} from "./types"
 
-export const createCustomer = (customer, history) => async dispatch => {
+export const createCustomer = (customer, history,customerIdentifier,takeItemCart ) => async dispatch => {
     try{
         await axios.post("http://localhost:8080/api/customer/v1", customer)
-        // history.push("/success")
+        // console.log(customerIdentifier)
+        // console.log(takeItemCart)
+        history.push({
+            pathname:'/confirm',
+            search: `?cusident=${customerIdentifier}`,
+            state: { takeItemCart1 : takeItemCart}
+          });
         // history.go()       
     } catch(err){
         dispatch({
@@ -22,7 +28,7 @@ export const getCustomers = () => async dispatch =>{
     })
 }
 
-export const getCustomer = (id, history) => async dispatch => {
+export const getCustomer = (id) => async dispatch => {
     try {
         const res = await axios.get(`http://localhost:8080/api/customer/v1/${id}`);
         dispatch({
@@ -30,7 +36,26 @@ export const getCustomer = (id, history) => async dispatch => {
             payload: res.data
         })
     } catch (error) {
-        history.push("/user")
+        // history.push("/user")
     }
    
 }
+
+export const customerDelete = (id, history) => async dispatch => {
+    if (
+      window.confirm(
+        "Has some error with the order?"
+      )
+    ) {
+        console.log(id)
+      await axios.delete(`http://localhost:8080/api/customer/v1/${id}`);
+      history.push({
+        pathname:'/',
+        
+      });
+      dispatch({
+        type: DELETE_CUSTOMER,
+        payload: id
+      });
+    }
+  };
