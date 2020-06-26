@@ -8,6 +8,8 @@ import ProductDetail from './components/productBoard/ProductDetail'
 import Cart from './components/orderDetails/Cart'
 import Header from './components/layout/Header';
 import FormCustomer from './components/customer/FormCustomer';
+import CustomerConfirmOrder from './components/customer/CustomerConfirmOrder'
+
 function App() {
   return (
     <Provider store={store}>
@@ -19,6 +21,7 @@ function App() {
             <Route exact path="/cart" component={Cart}/>
             <Route exact path="/formCustomer" component={FormCustomer} />
             <Route exact path="/productDetail/:idCategory/:idProduct" component={ProductDetail}/>
+            <Route exact path="/confirm" component={CustomerConfirmOrder}/> 
           </Switch>
         </div>
       </Router>

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createCustomer, getCustomers } from "../../actions/customerAction";
-import { getOrderDetail } from "../../actions/orderDetailAction";
-import { createOrderItems } from "../../actions/orderDetailAction";
+import { createCustomer} from "../../actions/customerAction";
 import classnames from "classnames";
 
 class FormCustomer extends Component {
@@ -12,6 +10,7 @@ class FormCustomer extends Component {
     // console.log(this.props.history.location.accessToDB)
     // console.log();
     this.state = {
+      customerIdentifier: "",
       nameCustomer: "",
       email: "",
       phone: "",
@@ -19,14 +18,27 @@ class FormCustomer extends Component {
       gender: "",
       city: "",
       errors: {},
+
       // listProductsItem: this.props.history.location.accessToDB
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.makeid = this.makeid.bind(this);
+  }
+
+  makeid(length) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    this.setState({ customerIdentifier: result });
   }
 
   componentDidMount() {
-    this.props.getOrderDetail();
+    this.makeid(7);
   }
 
   //life cycle hooks
@@ -42,49 +54,20 @@ class FormCustomer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+
     const listProductsItem = this.props.history.location.accessToDB;
+    const newCustomer = {
+      customerIdentifier: this.state.customerIdentifier,
+      nameCustomer: this.state.nameCustomer,
+      email: this.state.email,
+      gender: this.state.gender,
+      phone: this.state.phone,
+      address: this.state.address,
+      city: this.state.city,
+    };
+    // console.log(newCustomer);
     if (listProductsItem.basketNumbers !== 0) {
-      const newCustomer = {
-        nameCustomer: this.state.nameCustomer,
-        email: this.state.email,
-        gender: this.state.gender,
-        phone: this.state.phone,
-        address: this.state.address,
-        city: this.state.city,
-      };
-      console.log(newCustomer);
-      this.props.createCustomer(newCustomer, this.props.history);
-
-      //find with highest time create
-      const takeOrderDetail = this.props.orderDetailProps.orderDetail;
-      // console.log(takeOrderDetail)
-
-      // console.log(this.state.listProductsItem)
-      // console.log(listProductsItem);
-
-      takeOrderDetail.totalPrice = listProductsItem.cartCost;
-      // console.log(takeOrderDetail)
-
-      //Do this
-      //add to ListItem
-      // console.log(listProductsItem.productsInCart)
-      // console.log(listProductsItem.productsInCart[0])
-      Object.keys(listProductsItem.productsInCart).map((orderItem, index) => {
-        //return new page to be bill  -> if have time
-        if (listProductsItem.productsInCart[orderItem].inCart === true) {
-          const newProductItems = {
-            amount: listProductsItem.productsInCart[orderItem].numbers,
-            priceEach: listProductsItem.productsInCart[orderItem].product.price,
-          };
-          console.log(newProductItems);
-          this.props.createOrderItems(
-            takeOrderDetail.orderDetailIdentifier,
-            listProductsItem.productsInCart[orderItem].product
-              .productIdentifier,
-            newProductItems
-          );
-        }
-      });
+      this.props.createCustomer(newCustomer, this.props.history, this.state.customerIdentifier,this.props.history.location.accessToDB );
     } else {
       alert("You have no items in your shopping cart");
     }
@@ -93,6 +76,7 @@ class FormCustomer extends Component {
 
   render() {
     const { errors } = this.state;
+
     return (
       <div className="product">
         <div className="container">
@@ -144,15 +128,15 @@ class FormCustomer extends Component {
                   <div className="invalid-feedback">{errors.phone}</div>
                 )}
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <select
                   id="inputState"
-                  class="form-control"
+                  className="form-control"
                   name="gender"
                   value={this.state.gender}
                   onChange={this.onChange}
                 >
-                  <option selected>Gender</option>
+                  <option defaultValue>Gender</option>
                   <option>Male</option>
                   <option>Female</option>
                 </select>
@@ -186,12 +170,14 @@ class FormCustomer extends Component {
                   <div className="invalid-feedback">{errors.city}</div>
                 )}
               </div>
-              <button
-                type="submit"
-                className="btn btn-primary btn-block mt-4 form-group"
-              >
-                Order
-              </button>
+             
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block mt-4 form-group"
+                >
+                  Order
+                </button>
+              
             </form>
             <br />
             <br />
@@ -209,13 +195,8 @@ FormCustomer.propTypes = {
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
-  orderDetailProps: state.orderDetailState,
 });
 
 export default connect(mapStateToProps, {
   createCustomer,
-  getCustomers,
-  getOrderDetail,
-  createOrderItems,
-  // updateOrderDetail
 })(FormCustomer);
