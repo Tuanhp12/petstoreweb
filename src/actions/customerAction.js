@@ -22,6 +22,7 @@ export const createCustomer = (customer, history,customerIdentifier,takeItemCart
 
 export const getCustomers = () => async dispatch =>{
     const res = await axios.get("http://localhost:8080/api/customer/v1/all");
+    console.log(res.data)
     dispatch({
         type: GET_CUSTOMERS,
         payload: res.data

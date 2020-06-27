@@ -67,9 +67,7 @@ function CustomerConfirmOrder({
     orderDetailProps.orderDetail.totalPrice =
       location.state.takeItemCart1.cartCost;
     // console.log(orderDetailProps.orderDetail)
-    updateOrderDetail(parsed.cusident, orderDetailProps.orderDetail);
-
-    
+    updateOrderDetail(parsed.cusident, orderDetailProps.orderDetail, history);
   };
 
 //   console.log(takeProductsInCart);
