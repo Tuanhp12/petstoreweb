@@ -26,9 +26,10 @@ export default (state = initialState, action) => {
       if (productSelected.inCart === false) {
         state.basketNumbers += 1;
         productSelected.numbers += 1;
+        state.cartCost = state.cartCost + productSelected.product.price;
       }
       productSelected.inCart = true;
-      state.cartCost = state.cartCost + productSelected.product.price;
+     
       
       return {
         ...state,  

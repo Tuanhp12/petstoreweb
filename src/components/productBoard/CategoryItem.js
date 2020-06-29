@@ -12,8 +12,8 @@ class CategoryItem extends Component {
         // console.log(category.products)
         return (
             <div>
-
-                {category.products.map(product => (
+                
+                {category.products.map((product) => (
                     <ListProduct key={product.id} productGet={product}/>
                 ))}
             </div>

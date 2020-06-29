@@ -11,6 +11,8 @@ import FormCustomer from './components/customer/FormCustomer';
 import CustomerConfirmOrder from './components/customer/CustomerConfirmOrder'
 import LoginPage from './components/admin/LoginPage'
 import EmployeeeConfirm from './components//admin/EmployeeConfirm'
+import ProductsByCategory from './components/productBoard/ProductsByCategory'
+import Footer from './components/layout/Footer'
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
             <Route exact path="/confirm" component={CustomerConfirmOrder}/> 
             <Route exact path="/adminLogin" component={LoginPage}/>
             <Route exact path="/employeeConfirm" component={EmployeeeConfirm}/>
+            <Route exact path="/category/:id" component={ProductsByCategory}/>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </Provider>
