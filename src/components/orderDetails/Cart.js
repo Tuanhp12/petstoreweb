@@ -34,48 +34,24 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
         /></td>
         <td class="details">
           <a href="#">{product.product.name}</a>
-    <p>Info: {product.product.description}</p>
+          <p>Info: {product.product.description}</p>
         </td>
-        
+
         <td className="qty text-center">
-          <button className="btn btn-primary qty-btn" onClick={() => productQuantity("decrease", product.product)}>
-            <svg
-              className="bi bi-dash"
-              width="0.5em"
-              height="0.5em"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3.5 8a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.5-.5z"
-              />
-            </svg>
+          <button className="btn btn-light qty-btn" onClick={() => productQuantity("decrease", product.product)}>
+            -
           </button>
           <span>{product.numbers}</span>
-          <button className="btn btn-primary qty-btn" onClick={() => productQuantity("increase", product.product)}>
-            <svg
-              className="bi bi-plus"
-              width="1em"
-              height="1em"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"
-              />
-              <path
-                fillRule="evenodd"
-                d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"
-              />
-            </svg>
+          <button className="btn btn-light qty-btn" onClick={() => productQuantity("increase", product.product)}>
+            +
           </button>
         </td>
         <td class="price text-center"><strong>{product.product.price} VND</strong></td>
-        <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
+        <td class="text-right"><button className="main-btn icon-btn" onClick={() => clearProduct(product.product)}>
+          <i class="fa fa-close"></i>
+        </button></td>
+
+
       </tr>
     )
   });

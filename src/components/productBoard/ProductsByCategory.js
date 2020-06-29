@@ -23,7 +23,7 @@ function ProductsByCategory(props) {
                     <div class="index-column-blog row-service">
                         <ul class="list-group">
                             {categories && categories.map((category, index) => (
-                                <Link key={index} to={`/category/${category.categoryIdentifier}`} ><li class="list-group-item">{category.type}</li></Link>
+                                <Link key={index} to={`/category/${category.categoryIdentifier}`}><li class="list-group-item">{category.type}</li></Link>
                             ))}
                         </ul>
                     </div>
