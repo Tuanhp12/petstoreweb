@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 
 function ProductsByCategory(props) {
     useEffect(() => {
-        console.log("Run??????????????");
         props.getCategory(props.match.params.id);
         props.getCategories();
-    }, []);
+    }, [props.match.params.id]);
 
     const listProduct = props.categoryProps.products;
     const categories = props.categoriesProps;

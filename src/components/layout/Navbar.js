@@ -41,7 +41,7 @@ function Navbar(props) {
               </a>
               <div className="dropdown-menu">
                 {categories.map((category, index) => (
-                  <Link key={index} className="dropdown-item" to="">
+                  <Link key={index} className="dropdown-item" to={`/category/${category.categoryIdentifier}`}>
                     {category.type}
                   </Link>
                 ))}
