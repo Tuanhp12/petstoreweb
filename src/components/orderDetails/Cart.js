@@ -34,9 +34,10 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
         /></td>
         <td class="details">
           <a href="#">{product.product.name}</a>
-          <p>Info: {product.product.description}</p>
+          <p style={{width: '400px'}}>Info: {product.product.description}</p>
         </td>
 
+        <td class="price text-center"><strong>{product.product.price} VND</strong></td>
         <td className="qty text-center">
           <button className="btn btn-light qty-btn" onClick={() => productQuantity("decrease", product.product)}>
             -
@@ -46,7 +47,7 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
             +
           </button>
         </td>
-        <td class="price text-center"><strong>{product.product.price} VND</strong></td>
+        <td class="price text-center"><strong style={{ color: 'blue' }} >{product.product.price * product.numbers} VND</strong></td>
         <td class="text-right"><button className="main-btn icon-btn" onClick={() => clearProduct(product.product)}>
           <i class="fa fa-close"></i>
         </button></td>
@@ -70,6 +71,8 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
             <th>Description</th>
             <th class="text-center">Price</th>
             <th class="text-center">Quantity</th>
+
+
             <th class="text-center">Total</th>
             <th class="text-right"></th>
           </tr>
@@ -79,7 +82,7 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
       <div className="container">
         <div className="payment-btn">
           <h4>Basket Total</h4>
-          <h4>{basketProps.cartCost}$</h4>
+          <h4 style={{ color: 'blue' }}>{basketProps.cartCost} VND</h4>
 
           <Link to={{
             pathname: `/formCustomer`,
@@ -88,9 +91,11 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
               cartCost: basketProps.cartCost,
               productsInCart: basketProps.productsInCart
             }
-          }}><button className="btn btn-secondary">Payment</button></Link>
+          }}><button className="btn btn-secondary" style={{ backgroundColor: '#f8694a' }}>Payment</button></Link>
         </div>
       </div>
+      <div style={{ height: '50px' }} />
+
     </div>
 
 

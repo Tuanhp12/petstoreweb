@@ -16,22 +16,30 @@ function ProductsByCategory(props) {
     console.log(categories)
 
     return (
-        <div>
-            <div className="container">
-                <div id="aside" class="col-md-3">
-                    <div class="index-column-blog row-service">
-                        <ul class="list-group">
-                            {categories && categories.map((category, index) => (
-                                <Link key={index} to={`/category/${category.categoryIdentifier}`}><li class="list-group-item">{category.type}</li></Link>
-                            ))}
-                        </ul>
+        <div className="main-body">
+            <div className="section">
+                <div className="container">
+                    <div className="row">
+                        <div id="aside" class="col-md-3">
+                            <div class="index-column-blog row-service">
+                                <h3>&nbsp;&nbsp;&nbsp;Danh mục</h3>
+                            </div>
+                            <div class="index-column-blog row-service">
+                                <ul class="list-group">
+                                    {categories && categories.map((category, index) => (
+                                        <Link key={index} to={`/category/${category.categoryIdentifier}`}><li class="list-group-item">{category.type}</li></Link>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="main" class="col-md-9">
+                            <hr />
+                            {listProduct &&
+                                listProduct.map((product, index) => (
+                                    <ListProduct key={index} productGet={product} />
+                                ))}
+                        </div>
                     </div>
-                </div> 
-                <div id="main" class="col-md-9">
-                    {listProduct &&
-                        listProduct.map((product, index) => (
-                            <ListProduct key={index} productGet={product} />
-                        ))}
                 </div>
             </div>
         </div>
