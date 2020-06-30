@@ -1,30 +1,78 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {updateOrderDetailForEmployee } from "../../actions/orderDetailAction";
-import {getCustomers} from '../../actions/customerAction'
+import { updateOrderDetailForEmployee } from "../../actions/orderDetailAction";
+import { getCustomers } from "../../actions/customerAction";
 import { useHistory } from "react-router-dom";
 
-function EmployeeConfirm({getCustomers,orderDetailProps,customersProps,updateOrderDetailForEmployee }) {
+function EmployeeConfirm({
+  getCustomers,
+  orderDetailProps,
+  customersProps,
+  updateOrderDetailForEmployee,
+}) {
   const history = useHistory();
 
   useEffect(() => {
-    getCustomers()
+    getCustomers();
   }, []);
 
   // console.log(customersProps);
   let orderDetails = customersProps.map((customer, index) => {
-    // console.log("my testsssssssss: ")
-    // console.log(product)
-    // getCustomer(orderDetail.customerIdentifier)
-    // console.log(customerProps)
-    let isConfirm = false
-    if(customer.orderDetail.status === "Confirmed"){
-      isConfirm = true
+    let isConfirm = 0;
+    if (customer.orderDetail.status === "Not Confirm") {
+      isConfirm = 1;
     }
+    else if (customer.orderDetail.status === "Confirmed") {
+      isConfirm = 2;
+      
+    }
+    else{
+      isConfirm = 0
+    }
+    const confirmOrder = (customerIdentifier) => {
+      customer.orderDetail.status = "Confirmed";
+      updateOrderDetailForEmployee(
+        customerIdentifier,
+        customer.orderDetail,
+        history
+      );
+    };
+    const confirmPayment = (customerIdentifier) => {
+      customer.orderDetail.status = "Have Paid";
+      updateOrderDetailForEmployee(
+        customerIdentifier,
+        customer.orderDetail,
+        history
+      );
+    };
 
-    const confirm = (customerIdentifier) => {
-      customer.orderDetail.status = "Confirmed"
-        updateOrderDetailForEmployee(customerIdentifier, customer.orderDetail, history);
+    let button;
+    if (isConfirm === 1) {
+      button = (
+        <td>
+          <button
+            onClick={() => {
+              confirmOrder(customer.customerIdentifier);
+            }}
+          >
+            Confirm order
+          </button>
+        </td>
+      );
+    } else if (isConfirm === 2) {
+      button = (
+        <td>
+          <button
+            onClick={() => {
+              confirmPayment(customer.customerIdentifier);
+            }}
+          >
+            Confirm Payment
+          </button>
+        </td>
+      );
+    } else {
+      button = <td></td>;
     }
 
     return (
@@ -38,11 +86,7 @@ function EmployeeConfirm({getCustomers,orderDetailProps,customersProps,updateOrd
         <td>{customer.orderDetail.created_At}</td>
         <td>{customer.orderDetail.totalPrice}</td>
         <td>{customer.orderDetail.status}</td>
-        { isConfirm
-          ? ''
-          : <td><button onClick={() => {confirm(customer.customerIdentifier)}}>Confirm order</button></td>
-        }
-        
+        {button}
       </tr>
     );
   });
@@ -74,4 +118,7 @@ const mapStateToProps = (state) => ({
   customersProps: state.customerState.customers,
 });
 
-export default connect(mapStateToProps, { getCustomers,updateOrderDetailForEmployee })(EmployeeConfirm);
+export default connect(mapStateToProps, {
+  getCustomers,
+  updateOrderDetailForEmployee,
+})(EmployeeConfirm);

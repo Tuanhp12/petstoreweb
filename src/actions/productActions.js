@@ -27,3 +27,16 @@ export const getProduct = (category_id, product_id, history) => async dispatch =
         history.push("/dashboard")
     }
 }
+
+export const createProduct = (category_id,productRequest,history) => async dispatch => {
+    try{
+        await axios.post(`http://localhost:8080/api/v1/products/${category_id}`, productRequest)
+        history.push('/admin/listProduct');
+        history.go()       
+    } catch(err){
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    }
+}
