@@ -42,14 +42,20 @@ li {
 }
 
 .order-btn {
-  align-items: center;
-  display: block;
-  margin-left: 25%;
-  margin-right: 25%;
-  background-color: rgb(78, 211, 255);
-  border-radius: 20px 20px;
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+    background-color: #f8694a;
 }
-
+.confirm-btn{
+  background-color: #f8694a;
+  color: white
+}
+.cus-info{
+  display: inline;
+}
 .nav-item li {
   display: inline-block;
 }
@@ -60,7 +66,7 @@ b {
 
 .form-title {
   padding: 15px;
-  color: blue;
+  color: #f8694a;
 }
 #item-product{
   float: right;

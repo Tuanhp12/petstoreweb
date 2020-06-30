@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createCustomer} from "../../actions/customerAction";
+import { createCustomer } from "../../actions/customerAction";
 import classnames from "classnames";
 
 class FormCustomer extends Component {
@@ -67,7 +67,7 @@ class FormCustomer extends Component {
     };
     // console.log(newCustomer);
     if (listProductsItem.basketNumbers !== 0) {
-      this.props.createCustomer(newCustomer, this.props.history, this.state.customerIdentifier,this.props.history.location.accessToDB );
+      this.props.createCustomer(newCustomer, this.props.history, this.state.customerIdentifier, this.props.history.location.accessToDB);
     } else {
       alert("You have no items in your shopping cart");
     }
@@ -80,8 +80,9 @@ class FormCustomer extends Component {
     return (
       <div className="product">
         <div className="container">
+          <div className="col-md-3 m-auto order-info"></div>
           <div className="col-md-6 m-auto order-info">
-            <h3 className="text-center form-title">Order Information</h3>
+            <h3 className="text-center form-title">ORDER</h3>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <input
@@ -170,18 +171,19 @@ class FormCustomer extends Component {
                   <div className="invalid-feedback">{errors.city}</div>
                 )}
               </div>
-             
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4 form-group"
-                >
-                  Order
+
+              <button
+                type="submit"
+                className="btn btn-primary order-btn btn-block mt-4 form-group"
+              >
+                Order
                 </button>
-              
+
             </form>
             <br />
             <br />
           </div>
+          <div className="col-md-3 m-auto order-info"></div>
         </div>
       </div>
     );

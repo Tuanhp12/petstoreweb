@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {updateOrderDetailForEmployee } from "../../actions/orderDetailAction";
-import {getCustomers} from '../../actions/customerAction'
+import {getCustomers} from '../../actions/customerAction';
 import { useHistory } from "react-router-dom";
 
 function EmployeeConfirm({getCustomers,orderDetailProps,customersProps,updateOrderDetailForEmployee }) {
   const history = useHistory();
 
   useEffect(() => {
-    getCustomers()
+    getCustomers()  
   }, []);
 
   // console.log(customersProps);

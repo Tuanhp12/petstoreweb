@@ -21,9 +21,12 @@ class Dashboard extends Component {
             <div className="row">
               <div id="aside" class="col-md-3">
                 <div class="index-column-blog row-service">
+                  <h3>&nbsp;&nbsp;&nbsp;Danh mục</h3>
+                </div>
+                <div class="index-column-blog row-service">
                   <ul class="list-group">
-                  {categories.map((category) => (
-                    <Link to={`/category/${category.categoryIdentifier}`} ><li class="list-group-item">{category.type}</li></Link>
+                    {categories.map((category) => (
+                      <Link to={`/category/${category.categoryIdentifier}`} ><li class="list-group-item">{category.type}</li></Link>
                     ))}
                   </ul>
                 </div>
