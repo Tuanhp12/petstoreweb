@@ -84,6 +84,7 @@ class ProductDetail extends Component {
                 <div id="product-main-view">
                   <div class="product-view">
                   <img
+                  style = {{ height: '500px'}}
            src={product.image}
            className="img-fluid"
            alt={product.nameProduct}

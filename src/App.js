@@ -9,10 +9,9 @@ import Cart from './components/orderDetails/Cart'
 import Header from './components/layout/Header';
 import FormCustomer from './components/customer/FormCustomer';
 import CustomerConfirmOrder from './components/customer/CustomerConfirmOrder'
-import LoginPage from './components/admin/LoginPage'
-import EmployeeeConfirm from './components//admin/EmployeeConfirm'
 import ProductsByCategory from './components/productBoard/ProductsByCategory'
 import Footer from './components/layout/Footer'
+import Introduction from './components/common/Introduction'
 
 function App() {
   return (
@@ -26,9 +25,8 @@ function App() {
             <Route exact path="/formCustomer" component={FormCustomer} />
             <Route exact path="/productDetail/:idCategory/:idProduct" component={ProductDetail}/>
             <Route exact path="/confirm" component={CustomerConfirmOrder}/> 
-            <Route exact path="/adminLogin" component={LoginPage}/>
-            <Route exact path="/employeeConfirm" component={EmployeeeConfirm}/>
             <Route exact path="/category/:id" component={ProductsByCategory}/>
+            <Route exact path="/introduction" component={Introduction} />
           </Switch>
           <Footer />
         </div>

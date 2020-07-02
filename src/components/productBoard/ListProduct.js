@@ -48,7 +48,7 @@ const ListProduct = ({ getProductProps, productGet, addBasket, takeCartInfo }) =
 
   return (
 
-    <div class="col-md-4 col-sm-6 col-xs-6">
+    <div class="col-md-4 col-sm-6 col-xs-6" style={{height: '500px'}}>
       <div class="product product-single">
         <div class="product-thumb">
           <img
