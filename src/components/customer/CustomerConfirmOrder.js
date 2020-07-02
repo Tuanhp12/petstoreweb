@@ -90,7 +90,6 @@ function CustomerConfirmOrder({
         /></td>
         <td class="details">
           <a href="#">{product.product.name}</a>
-          <p style={{width: '400px'}}>Info: {product.product.description}</p>
         </td>
         <td>
           <p> {product.product.price} VND</p>

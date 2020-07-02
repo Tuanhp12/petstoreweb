@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     
     case ADD_PRODUCT_BASKET:
-      while(state.productsInCart.length < 21){
+      while(state.productsInCart.length < 100){
         state.productsInCart.push(state.productInCart)
       }
       let index = action.payload.id - 1;

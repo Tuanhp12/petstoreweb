@@ -19,9 +19,9 @@ function Header(props) {
           <div className="container" >
             <div className="pull-left">
               <div className="header-logo">
-                <a className="logo" href="#">
-                  <img src="./img/logo.png" alt="" />
-                </a>
+                <Link  to="">
+                  <img src="./img/2.png" alt="" />
+                </Link>
               </div>
             </div>
             <div className="pull-right">

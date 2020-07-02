@@ -33,8 +33,7 @@ function Cart({ basketProps, productQuantity, clearProduct }) {
           alt={product.nameProduct} width="120px" height="120px"
         /></td>
         <td class="details">
-          <a href="#">{product.product.name}</a>
-          <p style={{width: '400px'}}>Info: {product.product.description}</p>
+          <p href="#">{product.product.name}</p>
         </td>
 
         <td class="price text-center"><strong>{product.product.price} VND</strong></td>

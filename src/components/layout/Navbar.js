@@ -22,7 +22,7 @@ function Navbar(props) {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active nav-list">
               <Link className="nav-link" to="/" style={{ color: 'white' }}>
-                HOME
+                TRANG CHỦ
               </Link>
             </li>
 
@@ -37,30 +37,20 @@ function Navbar(props) {
                 aria-expanded="false"
                 style={{ color: 'white' }}
               >
-                CATEGORY
+                SẢN PHẨM
               </a>
               <div className="dropdown-menu">
                 {categories.map((category, index) => (
-                  <Link key={index} className="dropdown-item" to={`/category/${category.categoryIdentifier}`}>
+                  <Link key={index} className="dropdown-item" style={{ fontSize: 16}} to={`/category/${category.categoryIdentifier}`}>
                     {category.type}
                   </Link>
                 ))}
               </div>
             </li>
             <li className="nav-item nav-list">
-              <a className="nav-link" href="#" style={{ color: 'white' }}>
-                PRODUCTS
-              </a>
-            </li>
-            <li className="nav-item nav-list">
-              <a className="nav-link" href="#" style={{ color: 'white' }}>
-                ABOUT US
-              </a>
-            </li>
-            <li className="nav-item nav-list">
-              <a className="nav-link" href="#" style={{ color: 'white' }}>
-                SERVICE
-              </a>
+              <Link className="nav-link" to="/introduction" style={{ color: 'white' }}>
+                GIỚI THIỆU
+              </Link>
             </li>
           </ul>
         </div>
